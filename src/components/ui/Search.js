@@ -1,4 +1,3 @@
-import { getSuggestedQuery } from '@testing-library/dom'
 import {useState} from 'react'
 
 
