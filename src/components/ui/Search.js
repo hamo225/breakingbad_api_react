@@ -1,11 +1,18 @@
+import { getSuggestedQuery } from '@testing-library/dom'
 import {useState} from 'react'
 
 
-const Search = () => {
+const Search = ({getQuery}) => {
 
     // add state for input form
-    const [searchItem, setSearcItem] = useState([])
+    const [text, setText] = useState([])
     
+
+    const onChange = (q)=>{
+        setText(q)
+        getQuery(q)
+    }
+
     return (
         
         <section className='search'>
@@ -13,8 +20,9 @@ const Search = () => {
                 <input 
                 type="text" 
                 className='form-control'
-                value={searchItem}
-                onChange={(e)=>{setSearcItem(e.target.value)}}
+                value={text}
+                onChange={(e)=> onChange(e.target.value)} //everytime I write something into the input an onohange event will fire
+                // and will take the input value and put it into the state
                 placeholder='Search Characters'/>
             </form>
         </section>
